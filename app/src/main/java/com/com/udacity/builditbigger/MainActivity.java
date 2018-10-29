@@ -1,18 +1,22 @@
 package com.com.udacity.builditbigger;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 
-import mohamedcoder.telljoks.TellJokeActivity;
 import com.udacity.builditbigger.R;
 
+import mohamedcoder.telljoks.TellJokeActivity;
 
-public class MainActivity extends AppCompatActivity implements EndpointAsyncTask.Callback{
+
+
+public class MainActivity extends AppCompatActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +44,21 @@ public class MainActivity extends AppCompatActivity implements EndpointAsyncTask
     }
 
     public void tellJoke(View view) {
-        new EndpointAsyncTask(this).execute();
+        final Context ct = this;
+        (new EndpointsAsyncTask(
+                new EndpointsAsyncTask.AsyncResponse(){
+
+                    @Override
+                    public void processFinish(String output){
+                        //Here you will receive the result fired from async class
+                        //of onPostExecute(result) method.
+                        Intent myIntent = new Intent(ct, TellJokeActivity.class);
+                        myIntent.putExtra(Intent.EXTRA_TEXT, output);
+                        startActivity(myIntent);
+                    }
+                }
+        )).execute(new Pair<Context, String>(this, "Manfred"));
     }
 
 
-    @Override
-    public void onFinished(String result) {
-        Intent intent = new Intent(this, TellJokeActivity.class);
-        intent.putExtra(Intent.EXTRA_TEXT, result);
-        startActivity(intent);
-    }
 }
