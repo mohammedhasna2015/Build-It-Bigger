@@ -21,10 +21,10 @@ android {
     flavorDimensions "version"
     productFlavors {
         free {
-            applicationId "com.shrreya.gradle.builditbigger.free"
+            applicationId "com.udacity.builditbigger.free"
         }
         paid {
-            applicationId "com.shrreya.gradle.builditbigger.paid"
+            applicationId "com.udacity.builditbigger.paid"
         }
 
         demo {
@@ -48,8 +48,8 @@ dependencies {
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation project(':jokes')
-    implementation project(':telljokes')
+    implementation project(':joks')
+    implementation project(':TellJoks')
     //noinspection GradleCompatible
 
     final SUPPORT_LIB_VER = '27.1.1'
@@ -65,7 +65,7 @@ dependencies {
     implementation 'com.google.code.findbugs:jsr305:2.0.1'
     implementation 'com.google.http-client:google-http-client-android:1.22.0'
     implementation 'com.google.api-client:google-api-client:1.22.0'
-    implementation project(path: ':jokes_backend', configuration: 'android-endpoints')
+    implementation project(path: ':JoksBackEnd', configuration: 'android-endpoints')
     androidTestImplementation 'com.android.support:support-annotations:27.1.1'
     androidTestImplementation 'com.android.support.test:runner:0.5'
 }
