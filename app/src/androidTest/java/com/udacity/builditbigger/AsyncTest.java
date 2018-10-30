@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 public class AsyncTest extends AndroidTestCase {
 
-    public void testSomething() throws Throwable {
+    public String testSomething() throws Throwable {
         try {
             String joke = null;
             EndpointsAsyncTask jokeTask = new EndpointsAsyncTask(
@@ -27,7 +27,9 @@ public class AsyncTest extends AndroidTestCase {
             joke = jokeTask.get(30, TimeUnit.SECONDS);
             Assert.assertNotNull(joke);
         } catch (Exception e){
-            fail("Timed out");
+
+            return e.getMessage();
         }
+        return null;
     }
 }
