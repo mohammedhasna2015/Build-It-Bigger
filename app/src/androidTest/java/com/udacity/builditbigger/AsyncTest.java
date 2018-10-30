@@ -1,8 +1,10 @@
 package com.udacity.builditbigger;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.test.AndroidTestCase;
 import android.test.mock.MockContext;
+import android.util.Log;
 import android.util.Pair;
 
 import junit.framework.Assert;
@@ -10,9 +12,9 @@ import com.com.udacity.builditbigger.*;
 import java.util.concurrent.TimeUnit;
 
 public class AsyncTest extends AndroidTestCase {
+    private static final String LOG_TAG = "NonEmptyStringTest";
+    public void testSomething() throws Throwable {
 
-    public String testSomething() throws Throwable {
-        try {
             String joke = null;
             EndpointsAsyncTask jokeTask = new EndpointsAsyncTask(
                     new EndpointsAsyncTask.AsyncResponse(){
@@ -24,12 +26,15 @@ public class AsyncTest extends AndroidTestCase {
                     }
             );
             jokeTask.execute(new Pair<Context, String>(new MockContext(), "Manfred"));
-            joke = jokeTask.get(30, TimeUnit.SECONDS);
-            Assert.assertNotNull(joke);
-        } catch (Exception e){
 
-            return e.getMessage();
+            try{
+
+            joke = jokeTask.get(30, TimeUnit.SECONDS);
+                Log.d(LOG_TAG, "Retrieved a non-empty string successfully: " + joke);
+
+        } catch (Exception e){
+                e.printStackTrace();
         }
-        return null;
+        Assert.assertNotNull(joke);
     }
 }
