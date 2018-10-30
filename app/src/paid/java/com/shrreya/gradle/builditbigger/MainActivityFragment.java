@@ -1,4 +1,4 @@
-package com.shrreya.gradle.builditbigger;
+package com.moh.gradle.builditbigger;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
