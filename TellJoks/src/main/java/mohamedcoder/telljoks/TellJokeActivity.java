@@ -6,7 +6,8 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.shrreyabhatachaarya.telljokes.R;
+
+
 
 public class TellJokeActivity extends AppCompatActivity {
 
