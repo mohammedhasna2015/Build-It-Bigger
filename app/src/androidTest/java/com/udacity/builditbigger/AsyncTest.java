@@ -30,7 +30,11 @@ public class AsyncTest extends AndroidTestCase {
 
             joke = jokeTask.get(30, TimeUnit.SECONDS);
                 Log.d(LOG_TAG, "Retrieved a non-empty string successfully: " + joke);
-                 return joke;
+                if (joke!=null) {
+                	
+                	 return joke;
+                }
+                
         } catch (Exception e){
                return null;
         }
